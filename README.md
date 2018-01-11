@@ -1,2 +1,2 @@
 # Firebase-Train-Scheduler
-Train scheduler using Google's Firebase
+Train scheduler using **Google's Firebase**
