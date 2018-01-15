@@ -26,4 +26,11 @@ $(".submitBtn").on("click", function(event){
         freq: trainFreq 
     };
 
+    console.log(newTrain.name);
+    console.log(newTrain.dest);
+    console.log(newTrain.time);
+    console.log(newTrain.freq);
+
+
+
 });
