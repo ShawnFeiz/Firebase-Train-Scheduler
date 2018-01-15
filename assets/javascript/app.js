@@ -10,6 +10,8 @@ var config = {
 
 firebase.initializeApp(config);
 
+database = firebase.database();
+
 $(".submitBtn").on("click", function(event){
     event.preventDefault();
 
@@ -33,6 +35,11 @@ $(".submitBtn").on("click", function(event){
     console.log(newTrain.dest);
     console.log(newTrain.time);
     console.log(newTrain.freq);
+
+  $(".trainName").val("");
+  $(".destination").val("");
+  $(".firstTrain").val("");
+  $(".frequency").val("");
 
 
 
