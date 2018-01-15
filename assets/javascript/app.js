@@ -15,12 +15,13 @@ database = firebase.database();
 $(".submitBtn").on("click", function(event){
     event.preventDefault();
 
+    //grab data from the input and store them in symantic variables
     var trainName = $(".trainName").val().trim();
     var trainDest = $(".destination").val().trim();
     var trainTime = $(".firstTrain").val().trim();
     var trainFreq = $(".frequency").val().trim();
 
-
+    //creat new object for a new train
     var newTrain = {
         name: trainName,
         dest: trainDest,
@@ -28,14 +29,16 @@ $(".submitBtn").on("click", function(event){
         freq: trainFreq 
     };
 
+    //push newTrain object to the firebase database
     database.ref().push(newTrain);
 
-
+    //log newTrain information
     console.log(newTrain.name);
     console.log(newTrain.dest);
     console.log(newTrain.time);
     console.log(newTrain.freq);
 
+  //clear input boxes after clicking
   $(".trainName").val("");
   $(".destination").val("");
   $(".firstTrain").val("");
