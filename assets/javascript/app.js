@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyB9oheZRQxgT2478J7wyALgTAx3Zhfk1Jk",
@@ -46,4 +48,5 @@ $(".submitBtn").on("click", function(event){
 
 
 
+});
 });
