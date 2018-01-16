@@ -20,14 +20,14 @@ $(".submitBtn").on("click", function(event){
     //grab data from the input and store them in symantic variables
     var trainName = $(".trainName").val().trim();
     var trainDest = $(".destination").val().trim();
-    var trainTime = $(".firstTrain").val().trim();
+    var firstTrain = $(".firstTrain").val().trim();
     var trainFreq = $(".frequency").val().trim();
 
     //creat new object for a new train
     var newTrain = {
         name: trainName,
         dest: trainDest,
-        time: trainTime,
+        time: firstTrain,
         freq: trainFreq 
     };
 
@@ -45,8 +45,50 @@ $(".submitBtn").on("click", function(event){
   $(".destination").val("");
   $(".firstTrain").val("");
   $(".frequency").val("");
+});
+
+database.ref().on("child_added", function(snapshot, prevChildKey) {
+
+    console.log(snapshot.val());
+
+    var trainName = snapshot.val().name;
+    var trainDest = snapshot.val().dest;
+    var firstTrain = snapshot.val().time;
+    var trainFreq = snapshot.val().freq;
+
+    console.log("========================");
+    console.log(trainName);
+    console.log(trainDest);
+    console.log(firstTrain);
+    console.log(trainFreq);
+
+    // var firstTimeConverted = moment(firstTrainTime, "hh:mm").subtract(1, "years");
+
+
+
+
+
+$(".train-table").append("<tr><td>" + trainName + "</td><td>" + trainDest + "</td><td>" +
+firstTrain + "</td><td>" + trainFreq + "</td><td>" + trainFreq + "</td><td>");
+
 
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
