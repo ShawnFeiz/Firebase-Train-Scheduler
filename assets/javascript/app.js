@@ -56,30 +56,30 @@ database.ref().on("child_added", function(snapshot, prevChildKey) {
 
     //Grab the current time
     var currentTime = moment().format("hh:mm a");
-    console.log(currentTime);
+    // console.log(currentTime);
 
     //Grab the first time the train arrives based on user input and subtract a year from it
     //we are using hh:mm which is 1...12 and the a represents either am or pm. Nows users
     //don't have to worry about military time if they are not comfortable with it and use 1..12
     //instead
     var firstTime = moment(firstTrain, "hh:mm a").subtract(1, "years");
-    console.log("firstTime:" + firstTime);
+    // console.log("firstTime:" + firstTime);
     
     //Grab the difference from the current time and the first train arrival
     var trainDifference = moment().diff(moment(firstTime), "minutes");
-    console.log("trainDifference:" + trainDifference);
+    // console.log("trainDifference:" + trainDifference);
     
     //Use modulo to grab the remainder of the trainDifference and trainFreq
     var timeLeft = trainDifference % trainFreq;
-    console.log("timeLeft:" + timeLeft);
+    // console.log("timeLeft:" + timeLeft);
     
     //Grab the minutes away but subtracting the train frequency from the time left
     var minutesAway = trainFreq - timeLeft;
-    console.log("minutesAway:" + minutesAway);
+    // console.log("minutesAway:" + minutesAway);
     
     //Grab the next train coming
     var nextTrain = moment().add(minutesAway, "minutes").format("hh:mm a");
-    console.log("nextTrain:" + nextTrain);
+    // console.log("nextTrain:" + nextTrain);
     
 
 
