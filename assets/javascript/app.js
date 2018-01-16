@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyB9oheZRQxgT2478J7wyALgTAx3Zhfk1Jk",
@@ -50,26 +52,35 @@ database.ref().on("child_added", function(snapshot, prevChildKey) {
 
 
 
+
+    //Grab the current time
     var currentTime = moment().format("HH:mm a");
     console.log(currentTime);
 
+    //Grab the first time the train arrives based on user input and subtract a year from it
     var firstTime = moment(firstTrain, "hh:mm").subtract(1, "years");
     console.log("firstTime:" + firstTime);
     
+    //Grab the difference from the current time and the first train arrival
     var trainDifference = moment().diff(moment(firstTime), "minutes");
     console.log("trainDifference:" + trainDifference);
     
+    //Use modulo to grab the remainder of the trainDifference and trainFreq
     var timeLeft = trainDifference % trainFreq;
     console.log("timeLeft:" + timeLeft);
     
+    //Grab the minutes away but subtracting the train frequency from the time left
     var minutesAway = trainFreq - timeLeft;
     console.log("minutesAway:" + minutesAway);
     
+    //Grab the next train coming
     var nextTrain = moment().add(minutesAway, "minutes").format("hh:mm a");
     console.log("nextTrain:" + nextTrain);
     
 
-
+    
+// Grab the html table and append a table row with table data of user input and calculations
+// from moment.js
 $(".train-table").append("<tr><td>" + trainName + "</td><td>" + trainDest + "</td><td>" +
 trainFreq + "</td><td>" + nextTrain + "</td><td>" + minutesAway + "</td><td>");
 
