@@ -24,6 +24,11 @@ $(".submitBtn").on("click", function(event){
     var firstTrain = $(".firstTrain").val().trim();
     var trainFreq = $(".frequency").val().trim();
 
+    if (trainName === "" && trainDest === "" && firstTrain === "" && trainFreq === "") {
+        alert("You have to enter something!");
+        return false;
+    };
+
     //creat new object for a new train
     var newTrain = {
         name: trainName,
@@ -82,15 +87,10 @@ database.ref().on("child_added", function(snapshot, prevChildKey) {
 });
 
 $(".clearBtn").on("click", function() {
-
     $(".trainName").val("");
     $(".destination").val("");
     $(".firstTrain").val("");
     $(".frequency").val("");
-
 });
-
-
-
 
 });
