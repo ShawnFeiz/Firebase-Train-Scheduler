@@ -34,61 +34,74 @@ $(".submitBtn").on("click", function(event){
     //push newTrain object to the firebase database
     database.ref().push(newTrain);
 
-    //log newTrain information
-    console.log(newTrain.name);
-    console.log(newTrain.dest);
-    console.log(newTrain.time);
-    console.log(newTrain.freq);
-
-  //clear input boxes after clicking
-  $(".trainName").val("");
-  $(".destination").val("");
-  $(".firstTrain").val("");
-  $(".frequency").val("");
+    //clear input boxes after clicking
+    $(".trainName").val("");
+    $(".destination").val("");
+    $(".firstTrain").val("");
+    $(".frequency").val("");
 });
 
 database.ref().on("child_added", function(snapshot, prevChildKey) {
-
-    console.log(snapshot.val());
-
+    // console.log(snapshot.val());
     var trainName = snapshot.val().name;
     var trainDest = snapshot.val().dest;
     var firstTrain = snapshot.val().time;
     var trainFreq = snapshot.val().freq;
 
-    console.log("========================");
-    console.log(trainName);
-    console.log(trainDest);
-    console.log(firstTrain);
-    console.log(trainFreq);
-
-    // var firstTimeConverted = moment(firstTrainTime, "hh:mm").subtract(1, "years");
 
 
+    var currentTime = moment().format("HH:mm a");
+    console.log(currentTime);
 
+    var firstTime = moment(firstTrain, "hh:mm").subtract(1, "years");
+    console.log("firstTime:" + firstTime);
+    
+    var trainDifference = moment().diff(moment(firstTime), "minutes");
+    console.log("trainDifference:" + trainDifference);
+    
+    var timeLeft = trainDifference % trainFreq;
+    console.log("timeLeft:" + timeLeft);
+    
+    var minutesAway = trainFreq - timeLeft;
+    console.log("minutesAway:" + minutesAway);
+    
+    var nextTrain = moment().add(minutesAway, "minutes").format("hh:mm a");
+    console.log("nextTrain:" + nextTrain);
+    
 
 
 $(".train-table").append("<tr><td>" + trainName + "</td><td>" + trainDest + "</td><td>" +
-firstTrain + "</td><td>" + trainFreq + "</td><td>" + trainFreq + "</td><td>");
+trainFreq + "</td><td>" + nextTrain + "</td><td>" + minutesAway + "</td><td>");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
