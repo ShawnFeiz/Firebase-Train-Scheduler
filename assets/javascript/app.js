@@ -55,11 +55,14 @@ database.ref().on("child_added", function(snapshot, prevChildKey) {
     var trainFreq = snapshot.val().freq;
 
     //Grab the current time
-    var currentTime = moment().format("HH:mm a");
+    var currentTime = moment().format("hh:mm a");
     console.log(currentTime);
 
     //Grab the first time the train arrives based on user input and subtract a year from it
-    var firstTime = moment(firstTrain, "hh:mm").subtract(1, "years");
+    //we are using hh:mm which is 1...12 and the a represents either am or pm. Nows users
+    //don't have to worry about military time if they are not comfortable with it and use 1..12
+    //instead
+    var firstTime = moment(firstTrain, "hh:mm a").subtract(1, "years");
     console.log("firstTime:" + firstTime);
     
     //Grab the difference from the current time and the first train arrival
