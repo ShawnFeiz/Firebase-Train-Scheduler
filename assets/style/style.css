@@ -1,3 +1,15 @@
+.jumbo {
+    opacity: 0.75;
+}
+
+.panelCustom {
+    opacity: 0.75;
+}
+
+
+
+
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
